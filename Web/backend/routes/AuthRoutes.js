@@ -25,4 +25,6 @@ router.post(
   AuthController.Login
 );
 
+router.get("/logout", AuthController.Logout);
+
 module.exports = router;
