@@ -11,8 +11,17 @@ const userSchema = Schema({
     unique: true,
     required: true,
   },
+  address: {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
+    required: true,
+  },
+  role: {
+    type: Number,
+    default: 0, // 0 - Normal user | 1 - Creator | 2 - Admin
     required: true,
   },
   phoneNumber: {
