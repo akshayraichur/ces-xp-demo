@@ -2,7 +2,23 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 
+const AuthRoutes = require("./routes/AuthRoutes");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.disable("x-powered-by");
+const corsOptions = {
+  origin: "localhost:3000",
+};
+
+app.use(cors(corsOptions));
+
+app.use("/api/auth", AuthRoutes);
+
+mongoose.set("useCreateIndex", true);
 mongoose
   .connect(process.env.DB_CONNECTION_STRING, {
     useNewUrlParser: true,
