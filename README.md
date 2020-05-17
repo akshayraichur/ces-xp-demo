@@ -1,6 +1,6 @@
 # CES-XP
 
-**_This is a project for SD Lab._**
+**_This is a project for Software Development Lab._**
 
 ### Contributors :
 
