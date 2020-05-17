@@ -121,4 +121,9 @@ exports.Login = async (req, res, next) => {
   });
 };
 
-exports.Logout = (req, res, next) => {};
+exports.Logout = (req, res, next) => {
+  res.clearCookie("access_token");
+  return res
+    .status(201)
+    .json({ message: "Logout successful", isAuthenticated: false, user: {} });
+};
