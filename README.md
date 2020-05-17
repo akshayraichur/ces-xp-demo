@@ -4,6 +4,6 @@
 
 ### Contributors :
 
-    *Akshay Raichur*
-    *Akshata Kulkarni*
-    *Jayanth Apagundi*
+_Akshay Raichur_
+_Akshata Kulkarni_
+_Jayanth Apagundi_
