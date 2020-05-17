@@ -15,6 +15,13 @@ const courseSchema = new Schema(
       type: Number,
       required: true,
     },
+    dateOfCourse: {
+      type: String,
+    },
+    venue: {
+      type: String,
+    },
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }
 );
