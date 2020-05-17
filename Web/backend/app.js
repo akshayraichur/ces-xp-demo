@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const AuthRoutes = require("./routes/AuthRoutes");
+const WorkshopRoutes = require("./routes/WorkshopRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,8 +18,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/api/auth", AuthRoutes);
+app.use("/api/workshop", WorkshopRoutes);
 
 mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 mongoose
   .connect(process.env.DB_CONNECTION_STRING, {
     useNewUrlParser: true,

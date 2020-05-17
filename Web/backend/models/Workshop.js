@@ -11,12 +11,22 @@ const workshopSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+    },
     price: {
       type: Number,
       required: true,
     },
+    dateOfWorkshop: {
+      type: String,
+    },
+    venue: {
+      type: String,
+    },
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Course", workshopSchema);
+module.exports = mongoose.model("Workshop", workshopSchema);
