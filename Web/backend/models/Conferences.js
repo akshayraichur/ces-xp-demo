@@ -18,6 +18,9 @@ const conferenceSchema = new Schema(
     dateOfConference: {
       type: String,
     },
+    image: {
+      type: String,
+    },
     venue: {
       type: String,
     },

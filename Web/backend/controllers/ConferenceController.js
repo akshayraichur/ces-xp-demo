@@ -8,7 +8,13 @@ exports.PostAConference = async (req, res, next) => {
   }
   const { name, description, price, dateOfConference, venue } = req.body;
 
-  //   TODO: Adding Image to the Conference via multer
+  const image = req.files;
+
+  if (!image) {
+    return res.json({ err: "File Type Error" });
+  }
+
+  const imageUrl = image.conferenceImg[0].path;
 
   let newConference;
   try {
@@ -18,6 +24,7 @@ exports.PostAConference = async (req, res, next) => {
       price,
       dateOfConference,
       venue,
+      image: imageUrl,
       creator: req.user._id.toString(),
       //   image
     });
@@ -84,6 +91,14 @@ exports.editConference = async (req, res, next) => {
   }
 
   const { name, description, price, dateOfWorkshop, venue } = req.body;
+  const image = req.files;
+
+  let imageUrl;
+  if (Object.keys(image).length === 0) {
+    imageUrl = existingConference.image;
+  } else {
+    imageUrl = image.conferenceImg[0].path;
+  }
 
   if (existingConference.creator.toString() === req.user._id.toString()) {
     existingConference.name = name;
@@ -91,6 +106,7 @@ exports.editConference = async (req, res, next) => {
     existingConference.price = price;
     existingConference.dateOfWorkshop = dateOfWorkshop;
     existingConference.venue = venue;
+    existingConference.image = imageUrl;
 
     let updatedConference;
     try {
