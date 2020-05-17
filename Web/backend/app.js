@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const AuthRoutes = require("./routes/AuthRoutes");
 const WorkshopRoutes = require("./routes/WorkshopRoutes");
+const ConferenceRoutes = require("./routes/ConferenceRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,6 +20,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/auth", AuthRoutes);
 app.use("/api/workshop", WorkshopRoutes);
+app.use("/api/conference", ConferenceRoutes);
 
 mongoose.set("useCreateIndex", true);
 mongoose.set("useFindAndModify", false);
