@@ -7,8 +7,13 @@ exports.PostAWorkshop = async (req, res, next) => {
     return res.json({ err: "Validation error" });
   }
   const { name, description, price, dateOfWorkshop, venue } = req.body;
+  const image = req.files;
 
-  //   TODO: Adding Image to the Workshop via multer
+  if (!image) {
+    return res.json({ err: "File type Error" });
+  }
+
+  const imageUrl = image.workshopImg[0].path;
 
   let newWorkshop;
   try {
@@ -19,6 +24,7 @@ exports.PostAWorkshop = async (req, res, next) => {
       dateOfWorkshop,
       venue,
       creator: req.user._id.toString(),
+      image: imageUrl,
       //   image
     });
   } catch (e) {
@@ -84,6 +90,14 @@ exports.editWorkshop = async (req, res, next) => {
   }
 
   const { name, description, price, dateOfWorkshop, venue } = req.body;
+  const image = req.files;
+
+  let imageUrl;
+  if (Object.keys(image).length === 0) {
+    imageUrl = existingWorkshop.image;
+  } else {
+    imageUrl = await image.workshopImg[0].path;
+  }
 
   if (existingWorkshop.creator.toString() === req.user._id.toString()) {
     existingWorkshop.name = name;
@@ -91,6 +105,7 @@ exports.editWorkshop = async (req, res, next) => {
     existingWorkshop.price = price;
     existingWorkshop.dateOfWorkshop = dateOfWorkshop;
     existingWorkshop.venue = venue;
+    existingWorkshop.image = imageUrl;
 
     let updatedWorkshop;
     try {
