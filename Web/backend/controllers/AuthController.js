@@ -59,7 +59,7 @@ exports.Login = async (req, res, next) => {
     return res.json({ err: "There is a validation error" });
   }
 
-  console.log(email, password);
+  const { email, password } = req.body;
 
   let existingUser;
   try {
