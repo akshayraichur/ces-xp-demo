@@ -1,6 +1,6 @@
 # CES-XP
 
-**_This is a project for Software Development Lab._**
+**_This is a project for Software Development Lab for KLS Gogte Institute of Technology._**
 
 ### Contributors :
 
