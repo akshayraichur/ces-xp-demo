@@ -96,6 +96,7 @@ exports.editWorkshop = async (req, res, next) => {
   if (Object.keys(image).length === 0) {
     imageUrl = existingWorkshop.image;
   } else {
+    // TODO: Need to delete the previos image or else it will be a waste of space
     imageUrl = await image.workshopImg[0].path;
   }
 

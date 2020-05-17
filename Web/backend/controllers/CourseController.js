@@ -7,8 +7,13 @@ exports.PostACourse = async (req, res, next) => {
     return res.json({ err: "Validation error" });
   }
   const { name, description, price, dateOfCourse, venue } = req.body;
+  const image = req.files;
 
-  //   TODO: Adding Image to the Course via multer
+  if (!image) {
+    return res.json({ err: "File Type Error" });
+  }
+
+  const imageUrl = image.courseImg[0].path;
 
   let newCourse;
   try {
@@ -19,7 +24,7 @@ exports.PostACourse = async (req, res, next) => {
       dateOfCourse,
       venue,
       creator: req.user._id.toString(),
-      //   image
+      image: imageUrl,
     });
   } catch (e) {
     return res.json({
@@ -81,6 +86,14 @@ exports.editCourse = async (req, res, next) => {
   }
 
   const { name, description, price, dateOfCourse, venue } = req.body;
+  const image = req.files;
+
+  let imageUrl;
+  if (Object.keys(image).length === 0) {
+    imageUrl = existingCourse.image;
+  } else {
+    imageUrl = image.courseImg[0].path;
+  }
 
   if (existingCourse.creator.toString() === req.user._id.toString()) {
     existingCourse.name = name;
@@ -88,6 +101,7 @@ exports.editCourse = async (req, res, next) => {
     existingCourse.price = price;
     existingCourse.dateOfCourse = dateOfCourse;
     existingCourse.venue = venue;
+    existingCourse.image = imageUrl;
 
     let updatedCourse;
     try {

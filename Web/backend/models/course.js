@@ -18,6 +18,9 @@ const courseSchema = new Schema(
     dateOfCourse: {
       type: String,
     },
+    image: {
+      type: String,
+    },
     venue: {
       type: String,
     },
