@@ -1,9 +1,12 @@
 import React from "react";
+import NavBar from "./Components/NavBar";
+import { Register } from "./Screens/Register/Register";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hi</h1>
+      <NavBar />
+      <Register />
     </div>
   );
 }
