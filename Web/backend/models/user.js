@@ -25,6 +25,9 @@ const userSchema = Schema(
       default: 0, // 0 - Normal user | 1 - Creator | 2 - Admin
       required: true,
     },
+    image: {
+      type: String,
+    },
     phoneNumber: {
       type: Number,
       required: true,
@@ -41,7 +44,7 @@ const userSchema = Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("user", userSchema);

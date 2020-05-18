@@ -10,6 +10,13 @@ exports.Register = async (req, res, next) => {
   }
 
   const { name, email, address, password, phoneNumber } = req.body;
+  const image = req.files;
+
+  if (Object.keys(image).length === 0) {
+    return res.json({ err: "File type error" });
+  }
+
+  const imageUrl = image.profilePic[0].path;
 
   let existingUser;
   try {
@@ -37,6 +44,7 @@ exports.Register = async (req, res, next) => {
     address,
     password: hashedPassword,
     phoneNumber,
+    image: imageUrl,
     courses: [],
     workshops: [],
     conferences: [],
@@ -93,7 +101,7 @@ exports.Login = async (req, res, next) => {
     token = jwt.sign(
       { id: existingUser._id, email: existingUser.email },
       process.env.JWT_SECRET_KEY,
-      { expiresIn: "10h" }
+      { expiresIn: "10h" },
     );
   } catch (e) {
     return res.json({

@@ -25,15 +25,19 @@ app.use(cors(corsOptions));
 
 app.use(
   "/images/courses",
-  express.static(path.join(__dirname, "images", "courses"))
+  express.static(path.join(__dirname, "images", "courses")),
 );
 app.use(
   "/images/workshops",
-  express.static(path.join(__dirname, "images", "workshops"))
+  express.static(path.join(__dirname, "images", "workshops")),
 );
 app.use(
   "/images/conferences",
-  express.static(path.join(__dirname, "images", "conferences"))
+  express.static(path.join(__dirname, "images", "conferences")),
+);
+app.use(
+  "/images/profile",
+  express.static(path.join(__dirname, "images", "profile")),
 );
 
 const fileStorage = multer.diskStorage({
@@ -46,6 +50,9 @@ const fileStorage = multer.diskStorage({
     }
     if (file.fieldname === "conferenceImg") {
       cb(null, "images/conferences");
+    }
+    if (file.fieldname === "profilePic") {
+      cb(null, "images/profile");
     }
   },
   filename: (req, file, cb) => {
@@ -70,7 +77,8 @@ app.use(
     { name: "courseImg", maxCount: 1 },
     { name: "conferenceImg", maxCount: 1 },
     { name: "workshopImg", maxCount: 1 },
-  ])
+    { name: "profilePic", maxCount: 1 },
+  ]),
 );
 
 app.use("/api/auth", AuthRoutes);
