@@ -45,7 +45,9 @@ const validationSchema = () => {
 
 export const Register = () => {
   const [img, setImg] = React.useState(null);
+  // eslint-disable-next-line
   const [success, setSuccess] = React.useState(false);
+  // eslint-disable-next-line
   const [error, setError] = React.useState(false);
   const history = useHistory();
 
@@ -94,32 +96,46 @@ export const Register = () => {
             <Grid item xs={12} className="d-flex justify-content-center my-5">
               <div style={{ alignItems: "center", display: "flex" }}>
                 <AddCircleIcon />
-              </div>{" "}
+              </div>
+              {" "}
               <Typography variant="h4" component="h4" className="pl-2">
                 Register!
               </Typography>
             </Grid>
 
             <Grid item xs={12}>
-              {formik.errors.name && formik.touched.name ? (
-                <Message message={formik.errors.name} severity="error" />
-              ) : null}
+              {formik.errors.name && formik.touched.name
+                ? (
+                  <Message message={formik.errors.name} severity="error" />
+                )
+                : null}
 
-              {formik.errors.email && formik.touched.email ? (
-                <Message message={formik.errors.email} severity="error" />
-              ) : null}
+              {formik.errors.email && formik.touched.email
+                ? (
+                  <Message message={formik.errors.email} severity="error" />
+                )
+                : null}
 
-              {formik.errors.address && formik.touched.address ? (
-                <Message message={formik.errors.address} severity="error" />
-              ) : null}
+              {formik.errors.address && formik.touched.address
+                ? (
+                  <Message message={formik.errors.address} severity="error" />
+                )
+                : null}
 
-              {formik.errors.password && formik.touched.password ? (
-                <Message message={formik.errors.password} severity="error" />
-              ) : null}
+              {formik.errors.password && formik.touched.password
+                ? (
+                  <Message message={formik.errors.password} severity="error" />
+                )
+                : null}
 
-              {formik.errors.phoneNumber && formik.touched.phoneNumber ? (
-                <Message message={formik.errors.phoneNumber} severity="error" />
-              ) : null}
+              {formik.errors.phoneNumber && formik.touched.phoneNumber
+                ? (
+                  <Message
+                    message={formik.errors.phoneNumber}
+                    severity="error"
+                  />
+                )
+                : null}
             </Grid>
 
             <form onSubmit={formik.handleSubmit} noValidate>

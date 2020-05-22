@@ -37,44 +37,55 @@ const NavBar = () => {
           >
             {isAuthenticated
               ? (
-                <ul className="navbar-nav ml-auto ">
-                  {/* <li className="nav-item mr-3 ml-3">
-                    <Link className="nav-link" to="/">
-                      Home
-                    </Link>
-                  </li> */}
-                  {/* <li className="nav-item ml-3 mr-3">
-                    <Link className="nav-link" to="/signin">My Courses</Link>
-                  </li> */}
-
-                  <li className="nav-item mr-3 ml-3">
-                    <Button
-                      className="nav-link"
-                      color="primary"
-                      style={{ textDecoration: "none" }}
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </Button>
-                  </li>
-
-                  <div className="navbar-nav ml-auto nav-flex-icons mr-3 ml-3">
-                    <li className="nav-item avatar ">
-                      <Link className="nav-link p-0" to="/profile">
-                        <img
-                          src={`http://localhost:4000/${user.photo}`}
-                          className="rounded-circle z-depth-0"
-                          alt="avatarimage"
-                          height="35"
-                        />
-                      </Link>
+                <>
+                  <ul className="navbar-nav ml-auto ">
+                    {user.role === 1
+                      ? (
+                        <>
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/create">
+                              Create
+                            </Link>
+                          </li>
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/my-courses">
+                              My Courses
+                            </Link>
+                          </li>
+                        </>
+                      )
+                      : null}
+                    <li className="nav-item mr-3 ml-3">
+                      <Button
+                        className="nav-link"
+                        color="primary"
+                        style={{ textDecoration: "none" }}
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </Button>
                     </li>
-                  </div>
-                </ul>
+
+                    <div
+                      className="navbar-nav ml-auto nav-flex-icons mr-3 ml-3"
+                    >
+                      <li className="nav-item avatar ">
+                        <Link className="nav-link p-0" to="/profile">
+                          <img
+                            src={`http://localhost:4000/${user.photo}`}
+                            className="rounded-circle z-depth-0"
+                            alt="avatarimage"
+                            height="35"
+                          />
+                        </Link>
+                      </li>
+                    </div>
+                  </ul>
+                </>
               )
               : (
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item active">
+                  <li className="nav-item">
                     <Link className="nav-link" to=".">
                       Home
                     </Link>

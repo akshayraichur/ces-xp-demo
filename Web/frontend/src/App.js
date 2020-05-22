@@ -3,9 +3,12 @@ import NavBar from "./Components/NavBar.jsx";
 import { Register } from "./Screens/Register/Register";
 import { Signin } from "./Screens/Signin/Signin";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./Screens/Home/Home.jsx";
+import { UnAuthHome } from "./Screens/Home/UnAuthHome.jsx";
+import { AuthContext } from "./Context/AuthContext";
+import { AuthHome } from "./Screens/Home/AuthHome.jsx";
 
 function App() {
+  const { isAuthenticated } = React.useContext(AuthContext);
   return (
     <>
       <NavBar />
@@ -14,9 +17,13 @@ function App() {
           <Signin />
         </Route>
 
-        <Route path="/" exact>
-          <Home />
-        </Route>
+        {isAuthenticated
+          ? (<Route path="/" exact>
+            <AuthHome />
+          </Route>)
+          : (<Route path="/" exact>
+            <UnAuthHome />
+          </Route>)}
 
         <Route path="/register" exact>
           <Register />

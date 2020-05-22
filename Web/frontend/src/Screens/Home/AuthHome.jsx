@@ -1,9 +1,12 @@
 import React from "react";
 import { AuthContext } from "../../Context/AuthContext";
 
-export const Home = () => {
+export const AuthHome = () => {
+  // eslint-disable-next-line
   const { user, isAuthenticated } = React.useContext(AuthContext);
-  console.log(user);
-  console.log(isAuthenticated);
-  return <div></div>;
+  return (
+    <div>
+      <h1>This is auth home</h1>
+    </div>
+  );
 };

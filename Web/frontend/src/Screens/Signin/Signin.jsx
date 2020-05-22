@@ -39,9 +39,12 @@ const validationSchema = () => {
 
 export const Signin = () => {
   const history = useHistory();
+  // eslint-disable-next-line
   const [success, setSuccess] = React.useState(false);
+  // eslint-disable-next-line
   const [err, setErr] = React.useState(null);
 
+  // eslint-disable-next-line
   const { setUser, setIsAuthenticated, isAuthenticated } = useContext(
     AuthContext,
   );
@@ -58,7 +61,6 @@ export const Signin = () => {
         } else {
           setIsAuthenticated(data.data.isAuthenticated);
           setUser(data.data.user);
-          console.log(data.data.user);
           // Also set the localstorage with access_token
           localStorage.setItem("access_token", data.data.token);
           localStorage.setItem("user", JSON.stringify(data.data.user));
@@ -145,5 +147,5 @@ export const Signin = () => {
     );
   };
 
-  return <>{FormContents()}{isAuthenticated ? history.push("/") : null}</>;
+  return <>{FormContents()}</>;
 };
