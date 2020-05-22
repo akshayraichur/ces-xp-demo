@@ -10,6 +10,7 @@ const Card = (props) => {
             className="card-img-top"
             src={`http://localhost:4000/${props.image}`}
             alt="Cardimagecap"
+            style={{ height: "250px" }}
           />
           <Link to="/">
             <div className="mask rgba-white-slight"></div>
