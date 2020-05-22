@@ -56,7 +56,7 @@ export const Signin = () => {
         if (data.err) {
           setErr(data.err);
         } else {
-          setIsAuthenticated(true);
+          setIsAuthenticated(data.data.isAuthenticated);
           setUser(data.data.user);
           console.log(data.data.user);
           // Also set the localstorage with access_token

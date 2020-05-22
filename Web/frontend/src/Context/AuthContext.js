@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { Authenticate } from "../Helpers/Auth";
 
 export const AuthContext = React.createContext();
 
 export default ({ children }) => {
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
 
   useEffect(() => {
     if (localStorage.getItem("access_token") && localStorage.getItem("user")) {
       // eslint-disable-next-line
-      const access_token = localStorage.getItem("access_token");
       const userStorage = localStorage.getItem("user");
       setIsAuthenticated(true);
       setUser(userStorage);
+      setIsLoaded(true);
     } else {
       setIsAuthenticated(false);
       setUser({});
+      setIsLoaded(true);
     }
   }, []);
 

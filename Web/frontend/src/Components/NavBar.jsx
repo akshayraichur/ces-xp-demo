@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 const NavBar = () => {
+  const { isAuthenticated } = React.useContext(AuthContext);
   return (
     <div>
       <nav
@@ -23,31 +25,50 @@ const NavBar = () => {
           className="collapse navbar-collapse"
           id="navbarSupportedContent-555"
         >
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-              <Link className="nav-link" to=".">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signin">Signin</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
-            </li>
-            <div className="navbar-nav ml-auto nav-flex-icons">
-              <li className="nav-item avatar ">
-                <Link className="nav-link p-0" to=".">
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-                    className="rounded-circle z-depth-0"
-                    alt="avatarimage"
-                    height="35"
-                  />
-                </Link>
-              </li>
-            </div>
-          </ul>
+          {isAuthenticated
+            ? (
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link" to=".">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signin">Courses</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Profile</Link>
+                </li>
+                <div className="navbar-nav ml-auto nav-flex-icons">
+                  <li className="nav-item avatar ">
+                    <Link className="nav-link p-0" to=".">
+                      <img
+                        src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                        className="rounded-circle z-depth-0"
+                        alt="avatarimage"
+                        height="35"
+                      />
+                    </Link>
+                  </li>
+                </div>
+              </ul>
+            )
+            : (
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link" to=".">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signin">Signin</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Register</Link>
+                </li>
+              </ul>
+            )}
+
           {/* <ul class="navbar-nav ml-auto nav-flex-icons">
           </ul> */}
         </div>
