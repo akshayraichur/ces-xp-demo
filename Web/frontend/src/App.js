@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./Components/NavBar";
+import NavBar from "./Components/NavBar.jsx";
 import { Register } from "./Screens/Register/Register";
 import { Signin } from "./Screens/Signin/Signin";
 import { Switch, Route } from "react-router-dom";
