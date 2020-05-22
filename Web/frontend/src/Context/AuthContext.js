@@ -10,7 +10,8 @@ export default ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem("access_token") && localStorage.getItem("user")) {
       // eslint-disable-next-line
-      const userStorage = localStorage.getItem("user");
+      const userStorage = JSON.parse(localStorage.getItem("user"));
+      console.log(typeof userStorage);
       setIsAuthenticated(true);
       setUser(userStorage);
       setIsLoaded(true);

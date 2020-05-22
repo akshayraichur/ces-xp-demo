@@ -42,7 +42,7 @@ export const Signin = () => {
   const [success, setSuccess] = React.useState(false);
   const [err, setErr] = React.useState(null);
 
-  const { setUser, setIsAuthenticated, isAuthenticated, user } = useContext(
+  const { setUser, setIsAuthenticated, isAuthenticated } = useContext(
     AuthContext,
   );
 
@@ -145,5 +145,5 @@ export const Signin = () => {
     );
   };
 
-  return <>{FormContents()}</>;
+  return <>{FormContents()}{isAuthenticated ? history.push("/") : null}</>;
 };

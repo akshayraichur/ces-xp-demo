@@ -42,6 +42,8 @@ app.use(
   express.static(path.join(__dirname, "images", "profile")),
 );
 
+// app.use("/images/profile", express.static("images/profile"));
+
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === "courseImg") {
