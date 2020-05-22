@@ -124,6 +124,8 @@ exports.Login = async (req, res, next) => {
       id: existingUser._id,
       email: existingUser.email,
       role: existingUser.role,
+      address: existingUser.address,
+      phone: existingUser.phoneNumber,
     },
     token: token,
   });
@@ -134,4 +136,13 @@ exports.Logout = (req, res, next) => {
   return res
     .status(201)
     .json({ message: "Logout successful", isAuthenticated: false, user: {} });
+};
+
+exports.Authenticate = (req, res, next) => {
+  const { role, _id, name, email, address, phoneNumber } = req.user;
+  if (req & req.cookies) {
+    return res.json(
+      { user: { name, email, address, role, phoneNumber, id: _id } },
+    );
+  }
 };

@@ -19,7 +19,9 @@ app.use(cookieParser());
 
 app.disable("x-powered-by");
 const corsOptions = {
-  origin: "localhost:3000",
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
