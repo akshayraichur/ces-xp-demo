@@ -137,7 +137,7 @@ const Profile = () => {
               style={{ boxShadow: "none" }}
             >
               <h1 className="d-flex justify-content-center h1-responsive">
-                Your posts
+                Your Purchases
               </h1>
               {/* <Grid container spacing={2}>
                 {userPosts.length === 0
