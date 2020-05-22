@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import { Modal } from "./Modal";
+import { Button } from "@material-ui/core";
 
 const Card = (props) => {
   return (
@@ -18,21 +20,37 @@ const Card = (props) => {
         </div>
 
         <div className="card-body">
-          <Link className="activator waves-effect waves-light mr-4" to="/">
-            <i className="fas fa-share-alt">
-            </i>
-          </Link>
-
           <h4 className="card-title">{props.name}</h4>
+
+          <h6 className="text-strong">{`Price : ${props.price}/-`}</h6>
           <hr />
 
           <p className="card-text">
             {props.description}
           </p>
 
-          <a href="#!" className="black-text d-flex justify-content-end">
-            <h5>Read more <i className="fas fa-angle-double-right"></i></h5>
-          </a>
+          <div className="d-flex justify-content-between">
+            <Link to={props.link}>
+              <Button
+                type="button"
+                data-toggle="modal"
+                data-target={`#${props.id}`}
+                color="secondary"
+                variant="outlined"
+                className="d-flex justify-content-between"
+              >
+                Read more &nbsp; <i className="fas fa-angle-double-right"></i>
+              </Button>
+            </Link>
+            <Button
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              color="primary"
+              variant="contained"
+            >
+              Buy Now!
+            </Button>
+          </div>
         </div>
       </div>
     </div>

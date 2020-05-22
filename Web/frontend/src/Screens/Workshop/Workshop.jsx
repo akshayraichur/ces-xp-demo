@@ -12,7 +12,6 @@ export const Workshop = () => {
       if (data.err) {
         setError(data.err);
       } else {
-        console.log(data);
         setWorkshops(data.workshops);
       }
     }).catch();

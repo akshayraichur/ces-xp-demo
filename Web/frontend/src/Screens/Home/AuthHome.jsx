@@ -4,6 +4,7 @@ import { getConf } from "../../Helpers/Conf";
 import { getCourses } from "../../Helpers/Courses";
 import Card from "../../Components/Card";
 import { Link } from "react-router-dom";
+// import { Modal } from "@material-ui/core";
 
 export const AuthHome = () => {
   const [workshops, setWorkshops] = useState([]);
@@ -17,7 +18,6 @@ export const AuthHome = () => {
       if (data.err) {
         setError(data.err);
       } else {
-        console.log(data);
         setWorkshops(data.workshops);
       }
     }).catch();
@@ -38,8 +38,6 @@ export const AuthHome = () => {
       }
     }).catch((err) => console.log(err));
   }, []);
-
-  console.log(workshops);
 
   return <div>
     <div className="container">
@@ -65,6 +63,7 @@ export const AuthHome = () => {
                     date={w.dateOfWorkshop}
                     id={w._id}
                     image={w.image}
+                    link={`/workshops/${w._id}`}
                   />
                 </div>
               </React.Fragment>);
@@ -97,6 +96,7 @@ export const AuthHome = () => {
                     date={c.dateOfWorkshop}
                     id={c._id}
                     image={c.image}
+                    link={`/conferences/${c._id}`}
                   />
                 </div>
               </React.Fragment>);
@@ -129,6 +129,7 @@ export const AuthHome = () => {
                       date={co.dateOfWorkshop}
                       id={co._id}
                       image={co.image}
+                      link={`/courses/${co._id}`}
                     />
                   </div>
                 </React.Fragment>
