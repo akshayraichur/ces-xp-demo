@@ -1,13 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { Button } from "@material-ui/core";
 
 const NavBar = () => {
-  const { isAuthenticated, user } = React.useContext(AuthContext);
+  const { isAuthenticated, user, setUser, setIsAuthenticated } = React
+    .useContext(AuthContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
+    setUser({});
+    setIsAuthenticated(false);
+  };
   return (
     <div>
       <nav
-        className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1"
+        className="mb-1 navbar navbar-expand-lg navbar-dark indigo "
       >
         <div className="container">
           <Link className="navbar-brand" to=".">Learning Made Easy</Link>
@@ -29,18 +38,27 @@ const NavBar = () => {
             {isAuthenticated
               ? (
                 <ul className="navbar-nav ml-auto ">
-                  <li className="nav-item">
+                  {/* <li className="nav-item mr-3 ml-3">
                     <Link className="nav-link" to="/">
                       Home
                     </Link>
+                  </li> */}
+                  {/* <li className="nav-item ml-3 mr-3">
+                    <Link className="nav-link" to="/signin">My Courses</Link>
+                  </li> */}
+
+                  <li className="nav-item mr-3 ml-3">
+                    <Button
+                      className="nav-link"
+                      color="primary"
+                      style={{ textDecoration: "none" }}
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Button>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/signin">Courses</Link>
-                  </li>
-                  <li className="nav-item mr-3">
-                    <Link className="nav-link" to="/logout">Logout</Link>
-                  </li>
-                  <div className="navbar-nav ml-auto nav-flex-icons">
+
+                  <div className="navbar-nav ml-auto nav-flex-icons mr-3 ml-3">
                     <li className="nav-item avatar ">
                       <Link className="nav-link p-0" to="/profile">
                         <img
