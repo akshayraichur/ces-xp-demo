@@ -9,7 +9,6 @@ import EditIcon from "@material-ui/icons/Edit";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
-  document.title = `${user.fname} - #Youth4Digital`;
 
   //   const [userPosts, setUserPosts] = React.useState([]);
   //   const [fetchSuccess, setFetchSuccess] = React.useState(false);
