@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import React, { useContext, useEffect } from "react";
+// eslint-disable-next-line
 import { Container, Grid, Button, Typography } from "@material-ui/core";
 import { AuthContext } from "../../Context/AuthContext";
 // import Card from "../Components/Card";
@@ -28,7 +30,6 @@ const Profile = () => {
   //   }, [user]);
 
   const ProfileContents = () => {
-    console.log(user);
     return (
       <Container component="main" maxWidth="lg">
         {/* Header Section */}
