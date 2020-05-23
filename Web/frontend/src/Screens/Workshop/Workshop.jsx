@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getAllWorkshop } from "../../Helpers/Workshop";
 import Card from "../../Components/Card";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const Workshop = () => {
   const [workshops, setWorkshops] = useState([]);
   // eslint-disable-next-line
   const [error, setError] = useState([]);
+
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     getAllWorkshop().then((data) => {
@@ -32,6 +35,7 @@ export const Workshop = () => {
                   id={w._id}
                   image={w.image}
                   link={`/workshops/${w._id}`}
+                  disable={isAuthenticated ? false : true}
                 />
               </div>
             </React.Fragment>

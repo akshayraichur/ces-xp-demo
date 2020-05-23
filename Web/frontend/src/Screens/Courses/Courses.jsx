@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getCourses } from "../../Helpers/Courses";
 import Card from "../../Components/Card";
+import { AuthContext } from "../../Context/AuthContext";
 // import { Link } from "react-router-dom";
 
 export const Courses = () => {
   const [courses, setCourses] = useState([]);
   // eslint-disable-next-line
   const [error, setError] = useState([]);
+
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     getCourses().then((data) => {
@@ -33,6 +36,7 @@ export const Courses = () => {
                   id={co._id}
                   image={co.image}
                   link={`/courses/${co._id}`}
+                  disable={isAuthenticated ? false : true}
                 />
               </div>
             </React.Fragment>

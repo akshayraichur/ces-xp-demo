@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getConf } from "../../Helpers/Conf";
 import Card from "../../Components/Card";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const Conferences = () => {
   const [conf, setConf] = useState([]);
   // eslint-disable-next-line
   const [error, setError] = useState([]);
+  const { isAuthenticated } = useContext(AuthContext);
+
   useEffect(() => {
     getConf().then((data) => {
       if (data.err) {
@@ -31,6 +34,7 @@ export const Conferences = () => {
                   id={c._id}
                   image={c.image}
                   link={`/conferences/${c._id}`}
+                  disable={isAuthenticated ? false : true}
                 />
               </div>
             </React.Fragment>)

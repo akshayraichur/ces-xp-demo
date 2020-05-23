@@ -6,7 +6,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 export const WorkshopPost = () => {
   const { wid } = useParams();
-  const [workshop, setworkshop] = useState({});
+  const [workshop, setWorkshop] = useState({});
   const [err, setErr] = useState(null);
 
   const { isAuthenticated } = useContext(AuthContext);
@@ -17,7 +17,7 @@ export const WorkshopPost = () => {
         setErr(data.err);
         console.log(data.err);
       } else {
-        setworkshop(data.workshop);
+        setWorkshop(data.workshop);
       }
     }).catch((err) => err);
   }, []);
