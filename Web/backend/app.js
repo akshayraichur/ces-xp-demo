@@ -12,6 +12,7 @@ const AuthRoutes = require("./routes/AuthRoutes");
 const WorkshopRoutes = require("./routes/WorkshopRoutes");
 const ConferenceRoutes = require("./routes/ConferenceRoutes");
 const CourseRoutes = require("./routes/CourseRoutes");
+const UserRoutes = require('./routes/UserRoutes')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -89,6 +90,7 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/workshop", WorkshopRoutes);
 app.use("/api/conference", ConferenceRoutes);
 app.use("/api/course", CourseRoutes);
+app.use('/api/user/', UserRoutes)
 
 mongoose.set("useCreateIndex", true);
 mongoose.set("useFindAndModify", false);
