@@ -62,6 +62,7 @@ export const UnAuthHome = () => {
                     id={w._id}
                     image={w.image}
                     link={`/workshops/${w._id}`}
+                    disable={true}
                   />
                 </div>
               </React.Fragment>);
@@ -95,6 +96,7 @@ export const UnAuthHome = () => {
                     id={c._id}
                     image={c.image}
                     link={`/conferences/${c._id}`}
+                    disable={true}
                   />
                 </div>
               </React.Fragment>);
@@ -128,6 +130,7 @@ export const UnAuthHome = () => {
                       id={co._id}
                       image={co.image}
                       link={`/courses/${co._id}`}
+                      disable={true}
                     />
                   </div>
                 </React.Fragment>

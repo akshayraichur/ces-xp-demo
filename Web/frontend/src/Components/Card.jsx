@@ -60,6 +60,7 @@ const Card = (props) => {
               data-target="#exampleModalCenter"
               color="primary"
               variant="contained"
+              disabled={props.disable}
             >
               Buy Now!
             </Button>

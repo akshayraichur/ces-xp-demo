@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleCourse } from "../../Helpers/Courses";
 import { Container, Grid, Button } from "@material-ui/core";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const CoursesPost = () => {
   const { coid } = useParams();
 
   const [course, setCourse] = useState({});
   const [err, setErr] = useState(null);
+
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     getSingleCourse(coid).then((data) => {
@@ -35,7 +38,12 @@ export const CoursesPost = () => {
           <Grid item xs={12}>
             <div className="d-flex justify-content-between">
               <h2 className="h2">{course.name}</h2>
-              <Button className="btn btn-success">Buy Now!</Button>
+              <Button
+                className="btn btn-success"
+                disabled={isAuthenticated ? false : true}
+              >
+                Buy Now!
+              </Button>
             </div>
           </Grid>
           <Grid item xs={12}>
