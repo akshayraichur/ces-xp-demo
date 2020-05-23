@@ -16,22 +16,25 @@ export const ConferencePost = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    getAConf(cid).then((data) => {
-      if (data.err) {
-        setErr(data.err);
-        console.log(data.err);
-      } else {
-        setConferences(data.conference);
-      }
-    }).catch((err) => err);
+    getAConf(cid)
+      .then((data) => {
+        if (data.err) {
+          setErr(data.err);
+          console.log(data.err);
+        } else {
+          setConferences(data.conference);
+        }
+      })
+      .catch((err) => err);
 
     //TODO: Watch out for this! Might give error
   }, [cid]);
 
   useEffect(() => {
-    getCreatorDetails(conferences.creator).then((data) => {
-      setCreator(data.creator);
-    })
+    getCreatorDetails(conferences.creator)
+      .then((data) => {
+        setCreator(data.creator);
+      })
       .catch((err) => console.log(err));
   }, [conferences]);
 
@@ -48,10 +51,13 @@ export const ConferencePost = () => {
           </Grid>
           <Grid item xs={12}>
             <div className="d-flex justify-content-between">
+              <h2 className="h2">{conferences.name}</h2>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className="d-flex justify-content-between">
               <div className="">
-                <h5 className="h5">
-                  {`Price : ${conferences.price}/-`}
-                </h5>
+                <h5 className="h5">{`Price : ${conferences.price}/-`}</h5>
 
                 <h6 className="h6">
                   {`Date of Conference : ${conferences.dateOfConference}`}
@@ -67,7 +73,9 @@ export const ConferencePost = () => {
             </div>
           </Grid>
           <Grid item xs={12}>
-            <h4 className="h4">Host : <span>{creator}</span></h4>
+            <h4 className="h4">
+              Host : <span>{creator}</span>
+            </h4>
           </Grid>
           <Grid item xs={12}>
             <div>

@@ -1,13 +1,23 @@
 import Axios from "axios";
 
 export const getCourses = () => {
-  return Axios.get(`http://localhost:4000/api/course/get-course`).then(
-    (data) => data.data,
-  )
+  return Axios.get(`http://localhost:4000/api/course/get-course`)
+    .then((data) => data.data)
     .catch((err) => err);
 };
 
 export const getSingleCourse = (coid) => {
   return Axios.get(`http://localhost:4000/api/course/get-single-course/${coid}`)
-    .then((data) => data.data).catch((err) => err);
+    .then((data) => data.data)
+    .catch((err) => err);
+};
+
+export const postACourse = (formData, access_token) => {
+  return Axios.post(`http://localhost:4000/api/course/add-course`, formData, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  })
+    .then((data) => data.data)
+    .catch((err) => err);
 };

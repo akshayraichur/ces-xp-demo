@@ -15,22 +15,25 @@ export const WorkshopPost = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    getSingleWorkshop(wid).then((data) => {
-      if (data.err) {
-        setErr(data.err);
-        console.log(data.err);
-      } else {
-        setWorkshop(data.workshop);
-      }
-    }).catch((err) => console.log(err));
+    getSingleWorkshop(wid)
+      .then((data) => {
+        if (data.err) {
+          setErr(data.err);
+          console.log(data.err);
+        } else {
+          setWorkshop(data.workshop);
+        }
+      })
+      .catch((err) => console.log(err));
 
     //TODO: Watch out for this! Might give error
   }, [wid]);
 
   useEffect(() => {
-    getCreatorDetails(workshop.creator).then((data) => {
-      setCreator(data.creator);
-    })
+    getCreatorDetails(workshop.creator)
+      .then((data) => {
+        setCreator(data.creator);
+      })
       .catch((err) => console.log(err));
   }, [workshop]);
 
@@ -53,9 +56,7 @@ export const WorkshopPost = () => {
           <Grid item xs={12}>
             <div className="d-flex justify-content-between">
               <div className="">
-                <h5 className="h5">
-                  {`Price : ${workshop.price}/-`}
-                </h5>
+                <h5 className="h5">{`Price : ${workshop.price}/-`}</h5>
 
                 <h6 className="h6">
                   {`Date of Workshop : ${workshop.dateOfWorkshop}`}
@@ -72,7 +73,13 @@ export const WorkshopPost = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <h4 className="h4">Host : <span>{creator}</span></h4>
+            <h4 className="h4">Edit Button</h4>
+          </Grid>
+
+          <Grid item xs={12}>
+            <h4 className="h4">
+              Host : <span>{creator}</span>
+            </h4>
           </Grid>
 
           <Grid item xs={12}>

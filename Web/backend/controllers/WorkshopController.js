@@ -9,6 +9,8 @@ exports.PostAWorkshop = async (req, res, next) => {
   const { name, description, price, dateOfWorkshop, venue } = req.body;
   const image = req.files;
 
+  //TODO: Error handling of image is not proper
+
   if (!image) {
     return res.json({ err: "File type Error" });
   }

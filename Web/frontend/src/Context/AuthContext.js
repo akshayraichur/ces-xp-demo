@@ -6,11 +6,13 @@ export default ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
+  const [access_token, setAccess_token] = useState();
 
   useEffect(() => {
     if (localStorage.getItem("access_token") && localStorage.getItem("user")) {
-      // eslint-disable-next-line
+      const access = localStorage.getItem("access_token");
       const userStorage = JSON.parse(localStorage.getItem("user"));
+      setAccess_token(access);
       setIsAuthenticated(true);
       setUser(userStorage);
       setIsLoaded(true);
@@ -24,17 +26,21 @@ export default ({ children }) => {
   return (
     //   or can also be used simply with <></>
     <React.Fragment>
-      {isLoaded
-        ? (
-          <AuthContext.Provider
-            value={{ user, setUser, isAuthenticated, setIsAuthenticated }}
-          >
-            {children}
-          </AuthContext.Provider>
-        )
-        : (
-          <h1>Loading.....</h1>
-        )}
+      {isLoaded ? (
+        <AuthContext.Provider
+          value={{
+            user,
+            setUser,
+            isAuthenticated,
+            setIsAuthenticated,
+            access_token,
+          }}
+        >
+          {children}
+        </AuthContext.Provider>
+      ) : (
+        <h1>Loading.....</h1>
+      )}
     </React.Fragment>
   );
 };

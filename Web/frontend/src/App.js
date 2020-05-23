@@ -15,63 +15,65 @@ import "./App.css";
 import { WorkshopPost } from "./Screens/Workshop/WorkshopPost.jsx";
 import { ConferencePost } from "./Screens/Conferences/ConferencePost.jsx";
 import { CoursesPost } from "./Screens/Courses/CoursesPost.jsx";
+import { Create } from "./Screens/Create.jsx";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { AddWorkshop } from "./Screens/Workshop/AddWorkshop.jsx";
+import { AddConference } from "./Screens/Conferences/AddConference.jsx";
+import { AddCourse } from "./Screens/Courses/AddCourse.jsx";
 
 function App() {
-  const { isAuthenticated } = React.useContext(AuthContext);
+  const { isAuthenticated, user } = React.useContext(AuthContext);
+
+  AOS.init();
   return (
     <>
       <NavBar />
       <Switch>
-        <Route path="/signin" exact>
-          <Signin />
-        </Route>
+        {isAuthenticated ? (
+          <Route path="/" exact component={AuthHome} />
+        ) : (
+          <Route path="/" exact component={UnAuthHome} />
+        )}
 
-        {isAuthenticated
-          ? (<Route path="/" exact>
-            <AuthHome />
-          </Route>)
-          : (<Route path="/" exact>
-            <UnAuthHome />
-          </Route>)}
-
-        <Route path="/register" exact>
-          <Register />
-        </Route>
-
-        <Route path="/courses" exact>
-          <Courses />
-        </Route>
-        <Route path="/workshops" exact>
-          <Workshop />
-        </Route>
-        <Route path="/conferences" exact>
-          <Conferences />
-        </Route>
-
-        <Route path="/workshops/:wid">
-          <WorkshopPost />
-        </Route>
-
-        <Route path="/conferences/:cid">
-          <ConferencePost />
-        </Route>
-
-        <Route path="/courses/:coid">
-          <CoursesPost />
-        </Route>
+        <Route path="/signin" exact component={Signin} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/courses" exact component={Courses} />
+        <Route path="/workshops" exact component={Workshop} />
+        <Route path="/conferences" exact component={Conferences} />
+        <Route path="/workshops/:wid" component={WorkshopPost} />
+        <Route path="/conferences/:cid" component={ConferencePost} />
+        <Route path="/courses/:coid" component={CoursesPost} />
 
         {/* Authenticated Routes */}
-        {isAuthenticated
-          ? (<Route path="/profile">
-            <Profile />
-          </Route>)
-          : (<Route>
-            <ErrorPage />
-          </Route>)}
+        {isAuthenticated ? (
+          <>
+            <Route path="/profile" exact component={Profile} />
+            {user.role === 1 ? (
+              <>
+                <Route path="/create" exact component={Create} />
+                <Route
+                  path="/create/add-workshop"
+                  exact
+                  component={AddWorkshop}
+                />
+                <Route
+                  path="/create/add-conference"
+                  exact
+                  component={AddConference}
+                />
+                <Route path="/create/add-course" exact component={AddCourse} />
+              </>
+            ) : (
+              <Route component={ErrorPage} />
+            )}
+          </>
+        ) : (
+          <Route component={ErrorPage} />
+        )}
 
-        <Route>
-          <ErrorPage />
-        </Route>
+        {/* Page Not Found Route */}
+        <Route component={ErrorPage} />
       </Switch>
     </>
   );

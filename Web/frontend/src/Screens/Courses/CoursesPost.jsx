@@ -16,22 +16,25 @@ export const CoursesPost = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    getSingleCourse(coid).then((data) => {
-      if (data.err) {
-        setErr(data.err);
-        console.log(data.err);
-      } else {
-        setCourse(data.course);
-      }
-    }).catch((err) => err);
+    getSingleCourse(coid)
+      .then((data) => {
+        if (data.err) {
+          setErr(data.err);
+          console.log(data.err);
+        } else {
+          setCourse(data.course);
+        }
+      })
+      .catch((err) => err);
 
     //TODO: Watch out for this! Might give error
   }, [coid]);
 
   useEffect(() => {
-    getCreatorDetails(course.creator).then((data) => {
-      setCreator(data.creator);
-    })
+    getCreatorDetails(course.creator)
+      .then((data) => {
+        setCreator(data.creator);
+      })
       .catch((err) => console.log(err));
   }, [course]);
 
@@ -48,10 +51,13 @@ export const CoursesPost = () => {
           </Grid>
           <Grid item xs={12}>
             <div className="d-flex justify-content-between">
+              <h2 className="h2">{course.name}</h2>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className="d-flex justify-content-between">
               <div className="">
-                <h5 className="h5">
-                  {`Price : ${course.price}/-`}
-                </h5>
+                <h5 className="h5">{`Price : ${course.price}/-`}</h5>
 
                 <h6 className="h6">
                   {`Date of Course : ${course.dateOfCourse}`}
@@ -68,7 +74,9 @@ export const CoursesPost = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <h4 className="h4">Host : <span>{creator}</span></h4>
+            <h4 className="h4">
+              Host : <span>{creator}</span>
+            </h4>
           </Grid>
           <Grid item xs={12}>
             <div>
