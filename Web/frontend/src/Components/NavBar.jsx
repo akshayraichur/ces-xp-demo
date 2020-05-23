@@ -14,9 +14,9 @@ const NavBar = () => {
     setIsAuthenticated(false);
   };
   return (
-    <div>
+    <div className="mb-5 pb-3">
       <nav
-        className="mb-1 navbar navbar-expand-lg navbar-dark indigo "
+        className="navbar navbar-expand-lg navbar-dark indigo fixed-top "
       >
         <div className="container">
           <Link className="navbar-brand" to="/">Learning Made Easy</Link>

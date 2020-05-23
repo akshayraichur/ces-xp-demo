@@ -30,6 +30,7 @@ export const Conferences = () => {
                   date={c.dateOfWorkshop}
                   id={c._id}
                   image={c.image}
+                  link={`/conferences/${c._id}`}
                 />
               </div>
             </React.Fragment>)

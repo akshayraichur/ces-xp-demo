@@ -12,6 +12,9 @@ import { Workshop } from "./Screens/Workshop/Workshop.jsx";
 import { Conferences } from "./Screens/Conferences/Conferences.jsx";
 import Profile from "./Screens/Profile/Profile.jsx";
 import "./App.css";
+import { WorkshopPost } from "./Screens/Workshop/WorkshopPost.jsx";
+import { ConferencePost } from "./Screens/Conferences/ConferencePost.jsx";
+import { CoursesPost } from "./Screens/Courses/CoursesPost.jsx";
 
 function App() {
   const { isAuthenticated } = React.useContext(AuthContext);
@@ -43,6 +46,18 @@ function App() {
         </Route>
         <Route path="/conferences" exact>
           <Conferences />
+        </Route>
+
+        <Route path="/workshops/:wid">
+          <WorkshopPost />
+        </Route>
+
+        <Route path="/conferences/:cid">
+          <ConferencePost />
+        </Route>
+
+        <Route path="/courses/:coid">
+          <CoursesPost />
         </Route>
 
         {/* Authenticated Routes */}

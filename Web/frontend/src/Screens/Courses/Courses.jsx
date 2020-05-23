@@ -19,7 +19,7 @@ export const Courses = () => {
   }, []);
   return (
     <div>
-      <div className="container">
+      <div className="container my-5 pt-3">
         <h1 className="mt-3">Courses</h1>
         <div className="row">
           {courses.map((co, index) => (
@@ -32,6 +32,7 @@ export const Courses = () => {
                   date={co.dateOfWorkshop}
                   id={co._id}
                   image={co.image}
+                  link={`/courses/${co._id}`}
                 />
               </div>
             </React.Fragment>

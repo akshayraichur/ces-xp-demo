@@ -40,7 +40,7 @@ export const AuthHome = () => {
   }, []);
 
   return <div>
-    <div className="container">
+    <div className="container my-5 py-2">
       <div className="d-flex justify-content-between my-4">
         <h1 className="d-flex justify-content-center">Workshops</h1>
         <p className="d-flex justify-content-end mt-3">

@@ -4,6 +4,19 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 const Card = (props) => {
+  const splitDescription = props.description.split(" ");
+
+  const smallDescription = splitDescription.map((s, index) => {
+    if (index < 5) {
+      // console.log("S", s);
+      return s;
+    } else {
+      return null;
+    }
+  });
+
+  const des = smallDescription.join(" ");
+
   return (
     <div>
       <div className="card">
@@ -14,7 +27,7 @@ const Card = (props) => {
             alt="Cardimagecap"
             style={{ height: "250px" }}
           />
-          <Link to="/">
+          <Link to={props.link}>
             <div className="mask rgba-white-slight"></div>
           </Link>
         </div>
@@ -26,7 +39,7 @@ const Card = (props) => {
           <hr />
 
           <p className="card-text">
-            {props.description}
+            {`${des}..........`}
           </p>
 
           <div className="d-flex justify-content-between">
