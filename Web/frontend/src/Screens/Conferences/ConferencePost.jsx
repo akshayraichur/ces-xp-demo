@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Grid, Button } from "@material-ui/core";
-
 import { AuthContext } from "../../Context/AuthContext";
 import { getAConf } from "../../Helpers/Conf";
 import { getCreatorDetails } from "../../Helpers/User";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import EditIcon from "@material-ui/icons/Edit";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 export const ConferencePost = () => {
   const { cid } = useParams();
@@ -13,7 +15,7 @@ export const ConferencePost = () => {
   // eslint-disable-next-line
   const [err, setErr] = useState(null);
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
 
   useEffect(() => {
     getAConf(cid)
@@ -67,15 +69,39 @@ export const ConferencePost = () => {
               <Button
                 className="btn btn-lg btn-success"
                 disabled={isAuthenticated ? false : true}
+                startIcon={<ShoppingCartIcon />}
               >
                 Buy Now!
               </Button>
             </div>
           </Grid>
           <Grid item xs={12}>
-            <h4 className="h4">
-              Host : <span>{creator}</span>
-            </h4>
+            <div className="ml-auto d-flex">
+              <h4 className="h4 d-flex justify-content-start">
+                Host : <span>{` ${creator}`}</span>
+              </h4>
+              {user.role === 1 && user.id === conferences.creator ? (
+                <>
+                  <div className="ml-auto justify-content-end">
+                    <Button
+                      variant="outlined"
+                      className="mr-3"
+                      startIcon={<EditIcon />}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      className="ml-3"
+                      startIcon={<DeleteForeverIcon />}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </>
+              ) : null}
+            </div>
           </Grid>
           <Grid item xs={12}>
             <div>

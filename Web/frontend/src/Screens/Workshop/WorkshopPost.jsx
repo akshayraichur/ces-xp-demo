@@ -4,6 +4,9 @@ import { Container, Grid, Button } from "@material-ui/core";
 import { getSingleWorkshop } from "../../Helpers/Workshop";
 import { AuthContext } from "../../Context/AuthContext";
 import { getCreatorDetails } from "../../Helpers/User";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import EditIcon from "@material-ui/icons/Edit";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 export const WorkshopPost = () => {
   const { wid } = useParams();
@@ -12,7 +15,7 @@ export const WorkshopPost = () => {
   // eslint-disable-next-line
   const [err, setErr] = useState(null);
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
 
   useEffect(() => {
     getSingleWorkshop(wid)
@@ -49,9 +52,7 @@ export const WorkshopPost = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <div className="d-flex justify-content-between">
-              <h2 className="h2">{workshop.name}</h2>
-            </div>
+            <h2 className="h2">{workshop.name}</h2>
           </Grid>
           <Grid item xs={12}>
             <div className="d-flex justify-content-between">
@@ -66,6 +67,7 @@ export const WorkshopPost = () => {
               <Button
                 className="btn btn-lg btn-success"
                 disabled={isAuthenticated ? false : true}
+                startIcon={<ShoppingCartIcon />}
               >
                 Buy Now!
               </Button>
@@ -73,13 +75,32 @@ export const WorkshopPost = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <h4 className="h4">Edit Button</h4>
-          </Grid>
-
-          <Grid item xs={12}>
-            <h4 className="h4">
-              Host : <span>{creator}</span>
-            </h4>
+            <div className="ml-auto d-flex">
+              <h4 className="h4 d-flex justify-content-start">
+                Host : <span>{` ${creator}`}</span>
+              </h4>
+              {user.role === 1 && user.id === workshop.creator ? (
+                <>
+                  <div className="ml-auto justify-content-end">
+                    <Button
+                      variant="outlined"
+                      className="mr-3"
+                      startIcon={<EditIcon />}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      className="ml-3"
+                      startIcon={<DeleteForeverIcon />}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </>
+              ) : null}
+            </div>
           </Grid>
 
           <Grid item xs={12}>
