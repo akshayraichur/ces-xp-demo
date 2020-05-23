@@ -12,17 +12,19 @@ export const Courses = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    getCourses().then((data) => {
-      if (data.err) {
-        setError(data.err);
-      } else {
-        setCourses(data.Course);
-      }
-    }).catch((err) => console.log(err));
+    getCourses()
+      .then((data) => {
+        if (data.err) {
+          setError(data.err);
+        } else {
+          setCourses(data.Course);
+        }
+      })
+      .catch((err) => console.log(err));
   }, []);
   return (
     <div>
-      <div className="container my-5 pt-3">
+      <div className="container my-5 pt-3" data-aos="fade-up">
         <h1 className="mt-3">Courses</h1>
         <div className="row">
           {courses.map((co, index) => (

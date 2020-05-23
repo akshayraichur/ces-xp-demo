@@ -10,21 +10,23 @@ export const Conferences = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    getConf().then((data) => {
-      if (data.err) {
-        setError(data.err);
-      } else {
-        setConf(data.conferences);
-      }
-    }).catch();
+    getConf()
+      .then((data) => {
+        if (data.err) {
+          setError(data.err);
+        } else {
+          setConf(data.conferences);
+        }
+      })
+      .catch();
   }, []);
   return (
     <div>
-      <div className="container">
+      <div className="container" data-aos="fade-up">
         <h1>Conferences</h1>
         <div className="row">
           {conf.map((c, index) => (
-            (<React.Fragment key={index}>
+            <React.Fragment key={index}>
               <div className="col-md-4 my-3">
                 <Card
                   name={c.name}
@@ -37,7 +39,7 @@ export const Conferences = () => {
                   disable={isAuthenticated ? false : true}
                 />
               </div>
-            </React.Fragment>)
+            </React.Fragment>
           ))}
         </div>
       </div>
