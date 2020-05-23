@@ -143,3 +143,19 @@ exports.deleteCourse = async (req, res, next) => {
     }
   }
 };
+
+exports.getSingleCourse = async (req, res, next) => {
+  const { coid } = req.params;
+  let findCourse;
+  try {
+    findCourse = await Course.findById(coid);
+  } catch (e) {
+    return res.json({ err: "There was some error fetching the course" });
+  }
+
+  if (!findCourse) {
+    return res.json({ err: "No such course found" });
+  } else {
+    return res.json({ course: findCourse });
+  }
+};

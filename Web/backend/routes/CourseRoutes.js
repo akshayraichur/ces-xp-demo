@@ -20,7 +20,7 @@ router.post(
     check("dateOfCourse").not().isEmpty(),
     check("venue").not().isEmpty(),
   ],
-  courseController.PostACourse
+  courseController.PostACourse,
 );
 
 router.patch(
@@ -34,14 +34,16 @@ router.patch(
     check("dateOfCourse").not().isEmpty(),
     check("venue").not().isEmpty(),
   ],
-  courseController.editCourse
+  courseController.editCourse,
 );
 
 router.delete(
   "/delete/:cid",
   passport.authenticate("jwt", { session: false }),
   isCreator,
-  courseController.deleteCourse
+  courseController.deleteCourse,
 );
+
+router.get("/get-single-course/:coid", courseController.getSingleCourse);
 
 module.exports = router;
