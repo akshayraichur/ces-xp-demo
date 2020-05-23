@@ -22,7 +22,7 @@ export default ({ children }) => {
   }, []);
 
   return (
-    //   or can also be used simply with <></Redirect>
+    //   or can also be used simply with <></>
     <React.Fragment>
       {isLoaded
         ? (
