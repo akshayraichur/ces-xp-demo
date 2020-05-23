@@ -61,6 +61,7 @@ export const UnAuthHome = () => {
                     date={w.dateOfWorkshop}
                     id={w._id}
                     image={w.image}
+                    link={`/workshops/${w._id}`}
                   />
                 </div>
               </React.Fragment>);
@@ -93,6 +94,7 @@ export const UnAuthHome = () => {
                     date={c.dateOfWorkshop}
                     id={c._id}
                     image={c.image}
+                    link={`/conferences/${c._id}`}
                   />
                 </div>
               </React.Fragment>);
@@ -125,6 +127,7 @@ export const UnAuthHome = () => {
                       date={co.dateOfWorkshop}
                       id={co._id}
                       image={co.image}
+                      link={`/courses/${co._id}`}
                     />
                   </div>
                 </React.Fragment>

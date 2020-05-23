@@ -19,7 +19,7 @@ const NavBar = () => {
         className="mb-1 navbar navbar-expand-lg navbar-dark indigo "
       >
         <div className="container">
-          <Link className="navbar-brand" to=".">Learning Made Easy</Link>
+          <Link className="navbar-brand" to="/">Learning Made Easy</Link>
           <button
             className="navbar-toggler"
             type="button"

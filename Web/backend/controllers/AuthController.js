@@ -127,6 +127,8 @@ exports.Login = async (req, res, next) => {
       address: existingUser.address,
       phone: existingUser.phoneNumber,
       photo: existingUser.image,
+      image: existingUser.image,
+      name: existingUser.name,
     },
     token: token,
   });

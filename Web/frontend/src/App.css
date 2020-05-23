@@ -1,0 +1,7 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(237, 242, 247) !important;
+  /* background-image: linear-gradient(to top, #c7d6cd 0%, #cccbc8 100%); */
+}

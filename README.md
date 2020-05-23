@@ -4,8 +4,8 @@
 
 ### Contributors :
 
-1. _Akshay Raichur_
-2. _Akshata Kulkarni_
-3. _Jayanth Apagundi_
+1. _Akshay Raichur - (Web)_
+2. _Akshata Kulkarni - (Mobile)_
+3. _Jayanth Apagundi - (Web)_
 
 ##### Maintained By : Akshay Raichur - www.akshayraichur.com.
