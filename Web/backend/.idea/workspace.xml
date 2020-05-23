@@ -4,9 +4,9 @@
     <list default="true" id="cec99b05-868f-46fc-b374-4f1575cb7dde" name="Default Changelist" comment="Created Single Conf Api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/WorkshopController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/WorkshopController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Helpers/Workshop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Helpers/Workshop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Workshop/WorkshopPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Workshop/WorkshopPost.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,7 @@
       <updated>1589614418485</updated>
       <workItem from="1589614419708" duration="859000" />
       <workItem from="1590220570372" duration="3838000" />
-      <workItem from="1590225756983" duration="3293000" />
+      <workItem from="1590225756983" duration="4911000" />
     </task>
     <task id="LOCAL-00001" summary="Created Single Workshop Api">
       <created>1590222609141</created>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Grid, Button } from "@material-ui/core";
 import { getSingleWorkshop } from "../../Helpers/Workshop";
 import { AuthContext } from "../../Context/AuthContext";
@@ -41,7 +41,7 @@ export const WorkshopPost = () => {
   }, [workshop]);
 
   return (
-    <div>
+    <div data-aos="fade-up">
       <Container component="main" maxWidth="md" className="mt-5 pt-3">
         <Grid container spacing={4}>
           <Grid item xs={12}>
@@ -82,13 +82,15 @@ export const WorkshopPost = () => {
               {user.role === 1 && user.id === workshop.creator ? (
                 <>
                   <div className="ml-auto justify-content-end">
-                    <Button
-                      variant="outlined"
-                      className="mr-3"
-                      startIcon={<EditIcon />}
-                    >
-                      Edit
-                    </Button>
+                    <Link to={`/workshops/edit/${workshop._id}`}>
+                      <Button
+                        variant="outlined"
+                        className="mr-3"
+                        startIcon={<EditIcon />}
+                      >
+                        Edit
+                      </Button>
+                    </Link>
                     <Button
                       variant="outlined"
                       color="secondary"

@@ -21,6 +21,7 @@ import "aos/dist/aos.css";
 import { AddWorkshop } from "./Screens/Workshop/AddWorkshop.jsx";
 import { AddConference } from "./Screens/Conferences/AddConference.jsx";
 import { AddCourse } from "./Screens/Courses/AddCourse.jsx";
+import { EditWorkshop } from "./Screens/Workshop/EditWorkshop.jsx";
 
 function App() {
   const { isAuthenticated, user } = React.useContext(AuthContext);
@@ -41,9 +42,9 @@ function App() {
         <Route path="/courses" exact component={Courses} />
         <Route path="/workshops" exact component={Workshop} />
         <Route path="/conferences" exact component={Conferences} />
-        <Route path="/workshops/:wid" component={WorkshopPost} />
-        <Route path="/conferences/:cid" component={ConferencePost} />
-        <Route path="/courses/:coid" component={CoursesPost} />
+        <Route path="/workshops/:wid" exact component={WorkshopPost} />
+        <Route path="/conferences/:cid" exact component={ConferencePost} />
+        <Route path="/courses/:coid" exact component={CoursesPost} />
 
         {/* Authenticated Routes */}
         {isAuthenticated ? (
@@ -63,6 +64,7 @@ function App() {
                   component={AddConference}
                 />
                 <Route path="/create/add-course" exact component={AddCourse} />
+                <Route path="/workshops/edit/:wid" component={EditWorkshop} />
               </>
             ) : (
               <Route component={ErrorPage} />

@@ -24,3 +24,14 @@ export const postAWorkshop = (formData, access_token) => {
     .then((data) => data.data)
     .catch((err) => err);
 };
+
+export const editAWorkshop = (formData, wid, access_token) => {
+  return axios
+    .patch(`http://localhost:4000/api/workshop/edit/${wid}`, formData, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    })
+    .then((data) => data.data)
+    .catch((err) => err);
+};
