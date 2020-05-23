@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getSingleCourse } from "../../Helpers/Courses";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { getSingleCourse, deleteCourse } from "../../Helpers/Courses";
 import { Container, Grid, Button } from "@material-ui/core";
 import { AuthContext } from "../../Context/AuthContext";
 import { getCreatorDetails } from "../../Helpers/User";
@@ -16,7 +16,18 @@ export const CoursesPost = () => {
   const [err, setErr] = useState(null);
   const [creator, setCreator] = useState(null);
 
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { isAuthenticated, user, access_token } = useContext(AuthContext);
+  const history = useHistory();
+
+  const handleDelete = () => {
+    deleteCourse(coid, access_token).then((data) => {
+      if (data.err) {
+        setErr(data.err);
+      } else {
+        history.push("/courses");
+      }
+    }).catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     getSingleCourse(coid)
@@ -100,6 +111,7 @@ export const CoursesPost = () => {
                         color="secondary"
                         className="ml-3"
                         startIcon={<DeleteForeverIcon />}
+                        onClick={handleDelete}
                       >
                         Delete
                       </Button>

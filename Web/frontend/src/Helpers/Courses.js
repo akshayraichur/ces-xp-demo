@@ -33,3 +33,14 @@ export const editCourse = (formData, coid, access_token) => {
     },
   ).then((data) => data.data).catch((err) => err);
 };
+
+export const deleteCourse = (coid, access_token) => {
+  return Axios.delete(
+    `http://localhost:4000/api/course/delete/${coid}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    },
+  ).then((data) => data.data).catch((err) => err);
+};

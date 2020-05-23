@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cec99b05-868f-46fc-b374-4f1575cb7dde" name="Default Changelist" comment="Created Single Conf Api">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/WorkshopController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/WorkshopController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Helpers/Courses.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Helpers/Courses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Courses/CoursesPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Courses/CoursesPost.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
       <workItem from="1589614419708" duration="859000" />
       <workItem from="1590220570372" duration="3838000" />
       <workItem from="1590225756983" duration="5682000" />
-      <workItem from="1590260817356" duration="938000" />
+      <workItem from="1590260817356" duration="1444000" />
     </task>
     <task id="LOCAL-00001" summary="Created Single Workshop Api">
       <created>1590222609141</created>
