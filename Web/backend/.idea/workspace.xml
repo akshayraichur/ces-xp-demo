@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cec99b05-868f-46fc-b374-4f1575cb7dde" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/Card.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/NavBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Helpers/Courses.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Helpers/Courses.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Conferences/Conferences.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Conferences/Conferences.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Courses/Courses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Courses/Courses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Home/AuthHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Home/AuthHome.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/SinglePostScreen.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Screens/Workshop/Workshop.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Screens/Workshop/Workshop.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,29 +38,16 @@
       <option name="presentableId" value="Default" />
       <updated>1589614418485</updated>
       <workItem from="1589614419708" duration="859000" />
-      <workItem from="1590210640804" duration="530000" />
     </task>
-    <task id="LOCAL-00001" summary="Added GetSinglePost to CourseController.js">
-      <created>1590210712949</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590210712949</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added GetSinglePost to CourseController.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added GetSinglePost to CourseController.js" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="266" y="23" width="1148" height="1002" key="CommitChangelistDialog2" timestamp="1590210712708">
+    <state x="266" y="23" width="1148" height="1002" key="CommitChangelistDialog2" timestamp="1589614474373">
       <screen x="0" y="23" width="1680" height="1002" />
     </state>
-    <state x="266" y="23" width="1148" height="1002" key="CommitChangelistDialog2/0.23.1680.1002@0.23.1680.1002" timestamp="1590210712708" />
+    <state x="266" y="23" width="1148" height="1002" key="CommitChangelistDialog2/0.23.1680.1002@0.23.1680.1002" timestamp="1589614474373" />
   </component>
 </project>
