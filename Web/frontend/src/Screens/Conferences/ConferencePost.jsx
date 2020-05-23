@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { Container, Grid, Button } from "@material-ui/core";
 import { AuthContext } from "../../Context/AuthContext";
-import { getAConf } from "../../Helpers/Conf";
+import { getAConf, deleteConference } from "../../Helpers/Conf";
 import { getCreatorDetails } from "../../Helpers/User";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
@@ -15,7 +15,19 @@ export const ConferencePost = () => {
   // eslint-disable-next-line
   const [err, setErr] = useState(null);
 
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const history = useHistory();
+
+  const { isAuthenticated, user, access_token } = useContext(AuthContext);
+
+  const handleClick = () => {
+    deleteConference(cid, access_token).then((data) => {
+      if (data.err) {
+        setErr(data.err);
+      } else {
+        history.push("/conferences");
+      }
+    });
+  };
 
   useEffect(() => {
     getAConf(cid)
@@ -80,29 +92,32 @@ export const ConferencePost = () => {
               <h4 className="h4 d-flex justify-content-start">
                 Host : <span>{` ${creator}`}</span>
               </h4>
-              {user.role === 1 && user.id === conferences.creator ? (
-                <>
-                  <div className="ml-auto justify-content-end">
-                    <Link to={`/conferences/edit/${conferences._id}`}>
+              {user.role === 1 && user.id === conferences.creator
+                ? (
+                  <>
+                    <div className="ml-auto justify-content-end">
+                      <Link to={`/conferences/edit/${conferences._id}`}>
+                        <Button
+                          variant="outlined"
+                          className="mr-3"
+                          startIcon={<EditIcon />}
+                        >
+                          Edit
+                        </Button>
+                      </Link>
                       <Button
                         variant="outlined"
-                        className="mr-3"
-                        startIcon={<EditIcon />}
+                        color="secondary"
+                        className="ml-3"
+                        startIcon={<DeleteForeverIcon />}
+                        onClick={handleClick}
                       >
-                        Edit
+                        Delete
                       </Button>
-                    </Link>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className="ml-3"
-                      startIcon={<DeleteForeverIcon />}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </>
-              ) : null}
+                    </div>
+                  </>
+                )
+                : null}
             </div>
           </Grid>
           <Grid item xs={12}>

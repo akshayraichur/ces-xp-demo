@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { Container, Grid, Button } from "@material-ui/core";
-import { getSingleWorkshop } from "../../Helpers/Workshop";
+import { getSingleWorkshop, deleteWorkshop } from "../../Helpers/Workshop";
 import { AuthContext } from "../../Context/AuthContext";
 import { getCreatorDetails } from "../../Helpers/User";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -15,7 +15,20 @@ export const WorkshopPost = () => {
   // eslint-disable-next-line
   const [err, setErr] = useState(null);
 
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { isAuthenticated, user, access_token } = useContext(AuthContext);
+  const history = useHistory();
+
+  const deleteHandler = () => {
+    deleteWorkshop(wid, access_token).then((data) => {
+      if (data.err) {
+        setErr(data.err);
+      } else {
+        history.push("/workshops");
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
 
   useEffect(() => {
     getSingleWorkshop(wid)
@@ -79,29 +92,32 @@ export const WorkshopPost = () => {
               <h4 className="h4 d-flex justify-content-start">
                 Host : <span>{` ${creator}`}</span>
               </h4>
-              {user.role === 1 && user.id === workshop.creator ? (
-                <>
-                  <div className="ml-auto justify-content-end">
-                    <Link to={`/workshops/edit/${workshop._id}`}>
+              {user.role === 1 && user.id === workshop.creator
+                ? (
+                  <>
+                    <div className="ml-auto justify-content-end">
+                      <Link to={`/workshops/edit/${workshop._id}`}>
+                        <Button
+                          variant="outlined"
+                          className="mr-3"
+                          startIcon={<EditIcon />}
+                        >
+                          Edit
+                        </Button>
+                      </Link>
                       <Button
                         variant="outlined"
-                        className="mr-3"
-                        startIcon={<EditIcon />}
+                        color="secondary"
+                        className="ml-3"
+                        startIcon={<DeleteForeverIcon />}
+                        onClick={deleteHandler}
                       >
-                        Edit
+                        Delete
                       </Button>
-                    </Link>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className="ml-3"
-                      startIcon={<DeleteForeverIcon />}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </>
-              ) : null}
+                    </div>
+                  </>
+                )
+                : null}
             </div>
           </Grid>
 

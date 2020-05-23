@@ -8,7 +8,7 @@ export const getConf = () => {
 
 export const getAConf = (cid) => {
   return Axios.get(
-    `http://localhost:4000/api/conference/get-a-conference/${cid}`
+    `http://localhost:4000/api/conference/get-a-conference/${cid}`,
   )
     .then((data) => data.data)
     .catch((err) => err);
@@ -22,7 +22,7 @@ export const postAConference = (formData, access_token) => {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
-    }
+    },
   )
     .then((data) => data.data)
     .catch((err) => err);
@@ -36,8 +36,19 @@ export const editConference = (formData, cid, access_token) => {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
-    }
+    },
   )
     .then((data) => data.data)
     .catch((err) => err);
+};
+
+export const deleteConference = (cid, access_token) => {
+  return Axios.delete(
+    `http://localhost:4000/api/conference/delete/${cid}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    },
+  ).then((data) => data.data).catch(((err) => err));
 };

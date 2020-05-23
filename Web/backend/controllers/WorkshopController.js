@@ -125,6 +125,7 @@ exports.editWorkshop = async (req, res, next) => {
 
 exports.deleteWorkshop = async (req, res, next) => {
   const { wid } = req.params;
+  console.log(wid)
 
   let existingWorkshop;
   try {

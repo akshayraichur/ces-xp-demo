@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getSingleCourse } from "../../Helpers/Courses";
 import { Container, Grid, Button } from "@material-ui/core";
 import { AuthContext } from "../../Context/AuthContext";
@@ -53,7 +53,7 @@ export const CoursesPost = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between ">
               <h2 className="h2">{course.name}</h2>
             </div>
           </Grid>
@@ -82,27 +82,31 @@ export const CoursesPost = () => {
               <h4 className="h4 d-flex justify-content-start">
                 Host : <span>{` ${creator}`}</span>
               </h4>
-              {user.role === 1 && user.id === course.creator ? (
-                <>
-                  <div className="ml-auto justify-content-end">
-                    <Button
-                      variant="outlined"
-                      className="mr-3"
-                      startIcon={<EditIcon />}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className="ml-3"
-                      startIcon={<DeleteForeverIcon />}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </>
-              ) : null}
+              {user.role === 1 && user.id === course.creator
+                ? (
+                  <>
+                    <div className="ml-auto justify-content-end">
+                      <Link to={`/courses/edit/${course._id}`}>
+                        <Button
+                          variant="outlined"
+                          className="mr-3"
+                          startIcon={<EditIcon />}
+                        >
+                          Edit
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        className="ml-3"
+                        startIcon={<DeleteForeverIcon />}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </>
+                )
+                : null}
             </div>
           </Grid>
           <Grid item xs={12}>

@@ -23,6 +23,7 @@ import { AddConference } from "./Screens/Conferences/AddConference.jsx";
 import { AddCourse } from "./Screens/Courses/AddCourse.jsx";
 import { EditWorkshop } from "./Screens/Workshop/EditWorkshop.jsx";
 import { EditConference } from "./Screens/Conferences/EditConference.jsx";
+import { EditCourse } from "./Screens/Courses/EditCourse.jsx";
 
 function App() {
   const { isAuthenticated, user } = React.useContext(AuthContext);
@@ -32,11 +33,13 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        {isAuthenticated ? (
-          <Route path="/" exact component={AuthHome} />
-        ) : (
-          <Route path="/" exact component={UnAuthHome} />
-        )}
+        {isAuthenticated
+          ? (
+            <Route path="/" exact component={AuthHome} />
+          )
+          : (
+            <Route path="/" exact component={UnAuthHome} />
+          )}
 
         <Route path="/signin" exact component={Signin} />
         <Route path="/register" exact component={Register} />
@@ -48,36 +51,48 @@ function App() {
         <Route path="/courses/:coid" exact component={CoursesPost} />
 
         {/* Authenticated Routes */}
-        {isAuthenticated ? (
-          <>
-            <Route path="/profile" exact component={Profile} />
-            {user.role === 1 ? (
-              <>
-                <Route path="/create" exact component={Create} />
-                <Route
-                  path="/create/add-workshop"
-                  exact
-                  component={AddWorkshop}
-                />
-                <Route
-                  path="/create/add-conference"
-                  exact
-                  component={AddConference}
-                />
-                <Route path="/create/add-course" exact component={AddCourse} />
-                <Route path="/workshops/edit/:wid" component={EditWorkshop} />
-                <Route
-                  path="/conferences/edit/:cid"
-                  component={EditConference}
-                />
-              </>
-            ) : (
-              <Route component={ErrorPage} />
-            )}
-          </>
-        ) : (
-          <Route component={ErrorPage} />
-        )}
+        {isAuthenticated
+          ? (
+            <>
+              <Route path="/profile" exact component={Profile} />
+              {user.role === 1
+                ? (
+                  <>
+                    <Route path="/create" exact component={Create} />
+                    <Route
+                      path="/create/add-workshop"
+                      exact
+                      component={AddWorkshop}
+                    />
+                    <Route
+                      path="/create/add-conference"
+                      exact
+                      component={AddConference}
+                    />
+                    <Route
+                      path="/create/add-course"
+                      exact
+                      component={AddCourse}
+                    />
+                    <Route
+                      path="/workshops/edit/:wid"
+                      component={EditWorkshop}
+                    />
+                    <Route path="/courses/edit/:coid" component={EditCourse} />
+                    <Route
+                      path="/conferences/edit/:cid"
+                      component={EditConference}
+                    />
+                  </>
+                )
+                : (
+                  <Route component={ErrorPage} />
+                )}
+            </>
+          )
+          : (
+            <Route component={ErrorPage} />
+          )}
 
         {/* Page Not Found Route */}
         <Route component={ErrorPage} />

@@ -21,3 +21,15 @@ export const postACourse = (formData, access_token) => {
     .then((data) => data.data)
     .catch((err) => err);
 };
+
+export const editCourse = (formData, coid, access_token) => {
+  return Axios.patch(
+    `http://localhost:4000/api/course/edit/${coid}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    },
+  ).then((data) => data.data).catch((err) => err);
+};
