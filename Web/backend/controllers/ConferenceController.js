@@ -148,3 +148,20 @@ exports.deleteConference = async (req, res, next) => {
     }
   }
 };
+
+exports.getSingleConference = async (req, res, next) => {
+  const {cid} = req.params;
+
+  let findConf;
+  try{
+    findConf = await Conference.findById(cid);
+  }catch (e) {
+    return  res.json({err: 'There was some error fetching the conference post'})
+  }
+
+  if(!findConf){
+    return res.json({err: 'There was some error finding the conference post'})
+  }else{
+    return res.json({message: 'Found', conference: findConf})
+  }
+}

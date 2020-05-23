@@ -44,4 +44,6 @@ router.delete(
   conferenceController.deleteConference
 );
 
+router.get('/get-a-conference/:cid', conferenceController.getSingleConference)
+
 module.exports = router;
