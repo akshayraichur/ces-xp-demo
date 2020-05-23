@@ -44,4 +44,6 @@ router.delete(
   workshopController.deleteWorkshop
 );
 
+router.get('/get-a-workshop/:wid', workshopController.getSingleWorkshop)
+
 module.exports = router;

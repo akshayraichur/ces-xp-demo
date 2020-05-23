@@ -145,3 +145,21 @@ exports.deleteWorkshop = async (req, res, next) => {
     }
   }
 };
+
+exports.getSingleWorkshop = async (req, res, next ) => {
+  const {wid} = req.params;
+
+  let findWorkshop;
+  try{
+    findWorkshop = await Workshop.findById(wid);
+  }catch(e){
+    return res.json({err: 'There was some network error, cant fetch the WOrkshop details'})
+  }
+
+  if(!findWorkshop){
+    return res.json({err: 'There was some problem finding the Workshop'})
+  }
+  else{
+    return  res.json({message: 'Found', workshop: findWorkshop})
+  }
+}
