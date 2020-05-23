@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Grid, Button } from "@material-ui/core";
 import { AuthContext } from "../../Context/AuthContext";
 import { getAConf } from "../../Helpers/Conf";
@@ -83,13 +83,15 @@ export const ConferencePost = () => {
               {user.role === 1 && user.id === conferences.creator ? (
                 <>
                   <div className="ml-auto justify-content-end">
-                    <Button
-                      variant="outlined"
-                      className="mr-3"
-                      startIcon={<EditIcon />}
-                    >
-                      Edit
-                    </Button>
+                    <Link to={`/conferences/edit/${conferences._id}`}>
+                      <Button
+                        variant="outlined"
+                        className="mr-3"
+                        startIcon={<EditIcon />}
+                      >
+                        Edit
+                      </Button>
+                    </Link>
                     <Button
                       variant="outlined"
                       color="secondary"

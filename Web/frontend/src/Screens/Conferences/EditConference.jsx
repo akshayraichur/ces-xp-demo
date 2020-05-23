@@ -3,52 +3,52 @@ import { Container, Grid, Button, TextField } from "@material-ui/core";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../../Context/AuthContext";
-import { editAWorkshop, getSingleWorkshop } from "../../Helpers/Workshop";
 import { useHistory, useParams } from "react-router-dom";
 import Message from "../../Components/Message";
+import { getAConf, editConference } from "../../Helpers/Conf";
 
-export const EditWorkshop = () => {
+export const EditConference = () => {
   const { access_token } = useContext(AuthContext);
   const [img, setImg] = useState(null);
   // eslint-disable-next-line
   const [err, setErr] = useState(null);
   // eslint-disable-next-line
   const [success, setSuccess] = useState(false);
-  // eslint-disable-next-line
-  const [workshop, setWorkshop] = useState({});
-  // eslint-disable-next-line
-  const [uworkshop, setUworkshop] = useState({
+
+  const [conferences, setConference] = useState({});
+
+  const [uConference, setUConference] = useState({
     title: "",
     description: "",
     price: "",
     venue: "",
-    dateOfWorkshop: "",
+    dateOfConference: "",
   });
 
   const history = useHistory();
 
-  const { wid } = useParams();
+  const { cid } = useParams();
 
   const onChangeHandler = (e) => {
     setImg(e.target.files[0]);
   };
 
   useEffect(() => {
-    getSingleWorkshop(wid).then((data) => {
+    getAConf(cid).then((data) => {
       if (data.err) {
         setErr(data.err);
       } else {
-        setUworkshop({
-          ...uworkshop,
-          title: data.workshop.name,
-          description: data.workshop.description,
-          price: data.workshop.price,
-          venue: data.workshop.venue,
-          dateOfWorkshop: data.workshop.dateOfWorkshop,
+        setUConference({
+          ...uConference,
+          title: data.conference.name,
+          description: data.conference.description,
+          price: data.conference.price,
+          venue: data.conference.venue,
+          dateOfConference: data.conference.dateOfConference,
         });
       }
     });
-  }, [wid]);
+  }, [cid]);
 
   const onSubmitHandler = (values) => {
     const formData = new FormData();
@@ -56,17 +56,17 @@ export const EditWorkshop = () => {
     formData.append("description", values.description);
     formData.append("price", values.price);
     formData.append("venue", values.venue);
-    formData.append("dateOfWorkshop", values.dateOfWorkshop);
-    formData.append("workshopImg", img);
+    formData.append("dateOfConference", values.dateOfConference);
+    formData.append("conferenceImg", img);
 
-    editAWorkshop(formData, wid, access_token)
+    editConference(formData, cid, access_token)
       .then((data) => {
         if (data.err) {
           setErr(data.err);
         } else {
           setSuccess(true);
-          setWorkshop(data.workshop);
-          history.push("/workshops");
+          setConference(data.conference);
+          history.push("/conferences");
         }
       })
       .catch((err) => err);
@@ -76,16 +76,16 @@ export const EditWorkshop = () => {
     title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
     price: Yup.number().required("Price is required"),
-    dateOfWorkshop: Yup.string().required("Required"),
+    dateOfConference: Yup.string().required("Required"),
     venue: Yup.string().required("Venue is required"),
   });
 
   const initialValues = {
-    title: uworkshop.title,
-    description: uworkshop.description,
-    price: uworkshop.price,
-    dateOfWorkshop: uworkshop.dateOfWorkshop,
-    venue: uworkshop.venue,
+    title: uConference.title,
+    description: uConference.description,
+    price: uConference.price,
+    dateOfConference: uConference.dateOfConference,
+    venue: uConference.venue,
   };
 
   const formContents = () => {
@@ -94,7 +94,7 @@ export const EditWorkshop = () => {
         <Container component="main" maxWidth="xs" className="my-5">
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <h2 className="h2-responsive text-center">Edit Workshop!</h2>
+              <h2 className="h2-responsive text-center">Edit Conference!</h2>
             </Grid>
 
             <Grid item sx={12}>
@@ -151,28 +151,28 @@ export const EditWorkshop = () => {
                     fullWidth
                     as={TextField}
                     variant="outlined"
-                    name="dateOfWorkshop"
-                    id="dateOfWorkshop"
+                    name="dateOfConference"
+                    id="dateOfConference"
                     label="Date"
                     className="my-2"
                   />
-                  <ErrorMessage name="dateOfWorkshop" as={Message} />
+                  <ErrorMessage name="dateOfConference" as={Message} />
 
                   <h3 className="h5-responsive">
                     Choose a cover image to attract customers
                   </h3>
                   <input
                     type="file"
-                    name="workshopImg"
-                    id="workshopImg"
-                    label="workshopImg"
+                    name="conferenceImg"
+                    id="conferenceImg"
+                    label="conferenceImg"
                     className="my-2"
                     onChange={(e) => onChangeHandler(e)}
                     accept="image/png, image/jpeg, image/jpg"
                   />
 
                   <Button type="submit" variant="outlined" color="primary">
-                    Update Workshop
+                    Update Conference
                   </Button>
                 </Form>
               </Formik>

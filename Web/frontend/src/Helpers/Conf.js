@@ -27,3 +27,17 @@ export const postAConference = (formData, access_token) => {
     .then((data) => data.data)
     .catch((err) => err);
 };
+
+export const editConference = (formData, cid, access_token) => {
+  return Axios.patch(
+    `http://localhost:4000/api/conference/edit/${cid}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  )
+    .then((data) => data.data)
+    .catch((err) => err);
+};

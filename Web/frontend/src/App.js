@@ -22,6 +22,7 @@ import { AddWorkshop } from "./Screens/Workshop/AddWorkshop.jsx";
 import { AddConference } from "./Screens/Conferences/AddConference.jsx";
 import { AddCourse } from "./Screens/Courses/AddCourse.jsx";
 import { EditWorkshop } from "./Screens/Workshop/EditWorkshop.jsx";
+import { EditConference } from "./Screens/Conferences/EditConference.jsx";
 
 function App() {
   const { isAuthenticated, user } = React.useContext(AuthContext);
@@ -65,6 +66,10 @@ function App() {
                 />
                 <Route path="/create/add-course" exact component={AddCourse} />
                 <Route path="/workshops/edit/:wid" component={EditWorkshop} />
+                <Route
+                  path="/conferences/edit/:cid"
+                  component={EditConference}
+                />
               </>
             ) : (
               <Route component={ErrorPage} />
